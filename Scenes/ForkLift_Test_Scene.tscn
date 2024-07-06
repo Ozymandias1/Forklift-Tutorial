@@ -1,0 +1,54 @@
+[gd_scene load_steps=8 format=3 uid="uid://bs0u80jkcemey"]
+
+[ext_resource type="Texture2D" uid="uid://gmglkjq6bjjv" path="res://addons/kenney_prototype_textures/dark/texture_01.png" id="1_s3m1o"]
+[ext_resource type="Script" path="res://Scripts/CameraController.gd" id="2_jo7yx"]
+[ext_resource type="PackedScene" uid="uid://csp5b1k0el0dw" path="res://Forklift/forklift.tscn" id="3_yo45i"]
+[ext_resource type="PackedScene" uid="uid://cdlqeeiska8d6" path="res://Plate/plate.tscn" id="4_bm0c7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2q6n7"]
+albedo_texture = ExtResource("1_s3m1o")
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_c8lhe"]
+size = Vector3(100, 1, 100)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_j7fmg"]
+size = Vector3(100, 1, 100)
+
+[node name="ForkLift_Test_Scene" type="Node3D"]
+
+[node name="Environments" type="Node3D" parent="."]
+
+[node name="Ground" type="StaticBody3D" parent="Environments"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environments/Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+material_override = SubResource("StandardMaterial3D_2q6n7")
+mesh = SubResource("BoxMesh_c8lhe")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environments/Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_j7fmg")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environments"]
+transform = Transform3D(0.788011, -0.32397, 0.523529, 0, 0.850352, 0.526214, -0.615662, -0.414662, 0.670087, 3.22598, 3.29577, 3.62552)
+shadow_enabled = true
+
+[node name="CameraPivot" type="Node3D" parent="." node_paths=PackedStringArray("follow_target")]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0)
+script = ExtResource("2_jo7yx")
+follow_target = NodePath("../Forklift")
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
+
+[node name="Forklift" parent="." instance=ExtResource("3_yo45i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.840531, 0.994374, -2.44829)
+
+[node name="Plate" parent="." instance=ExtResource("4_bm0c7")]
+
+[node name="Plate2" parent="." instance=ExtResource("4_bm0c7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.817555, 0.859917, 0.841511)
+
+[node name="Plate3" parent="." instance=ExtResource("4_bm0c7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.817555, 0.859917, 2.14123)

@@ -1,0 +1,55 @@
+[gd_scene load_steps=5 format=3 uid="uid://cdlqeeiska8d6"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_0h1yj"]
+size = Vector3(1, 0.1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qs8by"]
+size = Vector3(1, 0.1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_nm7qn"]
+size = Vector3(0.1, 0.7, 0.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kptdu"]
+size = Vector3(0.1, 0.7, 0.1)
+
+[node name="Plate" type="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.817555, 0.859917, -0.673344)
+
+[node name="Body" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0171998)
+mesh = SubResource("BoxMesh_0h1yj")
+
+[node name="Body_Collision" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_qs8by")
+
+[node name="Leg0" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.444023, -0.385409, -0.414327)
+mesh = SubResource("BoxMesh_nm7qn")
+
+[node name="LegCollision0" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.444023, -0.385409, -0.414327)
+shape = SubResource("BoxShape3D_kptdu")
+
+[node name="Leg1" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.444, -0.385409, -0.414327)
+mesh = SubResource("BoxMesh_nm7qn")
+
+[node name="LegCollision1" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.444, -0.385409, -0.414327)
+shape = SubResource("BoxShape3D_kptdu")
+
+[node name="Leg2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.444, -0.385409, 0.414)
+mesh = SubResource("BoxMesh_nm7qn")
+
+[node name="LegCollision2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.444, -0.385409, 0.414)
+shape = SubResource("BoxShape3D_kptdu")
+
+[node name="Leg3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.444, -0.385409, 0.414)
+mesh = SubResource("BoxMesh_nm7qn")
+
+[node name="LegCollision3" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.444, -0.385409, 0.414)
+shape = SubResource("BoxShape3D_kptdu")

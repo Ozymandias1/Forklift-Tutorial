@@ -1,0 +1,157 @@
+[gd_scene load_steps=21 format=3 uid="uid://csp5b1k0el0dw"]
+
+[ext_resource type="Script" path="res://Forklift/forklift.gd" id="1_m3413"]
+[ext_resource type="Texture2D" uid="uid://bc7dji2p7lngp" path="res://addons/kenney_prototype_textures/green/texture_01.png" id="1_xy3jl"]
+[ext_resource type="Texture2D" uid="uid://gmglkjq6bjjv" path="res://addons/kenney_prototype_textures/dark/texture_01.png" id="2_520wk"]
+[ext_resource type="Texture2D" uid="uid://b5ymtxrnv5d2w" path="res://addons/kenney_prototype_textures/light/texture_01.png" id="4_j46vn"]
+[ext_resource type="Texture2D" uid="uid://drunmelxni87k" path="res://addons/kenney_prototype_textures/orange/texture_01.png" id="5_yg2iw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nuv1g"]
+albedo_texture = ExtResource("1_xy3jl")
+
+[sub_resource type="BoxMesh" id="BoxMesh_qpdjp"]
+size = Vector3(1, 1, 1.7)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_whs1h"]
+size = Vector3(1, 1, 1.7)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_37wtl"]
+albedo_texture = ExtResource("2_520wk")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_nk2qg"]
+material = SubResource("StandardMaterial3D_37wtl")
+top_radius = 0.35
+bottom_radius = 0.35
+height = 0.3
+radial_segments = 8
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8fq35"]
+albedo_texture = ExtResource("2_520wk")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_piga6"]
+material = SubResource("StandardMaterial3D_8fq35")
+top_radius = 0.25
+bottom_radius = 0.25
+height = 0.2
+radial_segments = 8
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jkabv"]
+size = Vector3(0.5, 3, 0.15)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0fip2"]
+size = Vector3(0.8, 0.8, 0.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_re7ca"]
+size = Vector3(0.1, 0.02, 1.2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r336y"]
+albedo_texture = ExtResource("4_j46vn")
+
+[sub_resource type="BoxMesh" id="BoxMesh_wd1xw"]
+material = SubResource("StandardMaterial3D_r336y")
+size = Vector3(0.5, 3, 0.15)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fi7o5"]
+albedo_texture = ExtResource("5_yg2iw")
+
+[sub_resource type="BoxMesh" id="BoxMesh_m5a6h"]
+material = SubResource("StandardMaterial3D_fi7o5")
+size = Vector3(0.8, 0.8, 0.1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wcaa7"]
+size = Vector3(0.1, 0.02, 1.2)
+
+[node name="Forklift" type="VehicleBody3D"]
+script = ExtResource("1_m3413")
+
+[node name="Body" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_nuv1g")
+mesh = SubResource("BoxMesh_qpdjp")
+
+[node name="Body_Collision" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_whs1h")
+
+[node name="Wheel_FL" type="VehicleWheel3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.672511, -0.425882, 0.818748)
+use_as_traction = true
+wheel_radius = 0.35
+wheel_rest_length = 0.2
+suspension_stiffness = 40.0
+
+[node name="Wheel_Mesh" type="MeshInstance3D" parent="Wheel_FL"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_nk2qg")
+
+[node name="Wheel_FR" type="VehicleWheel3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.673, -0.426, 0.819)
+use_as_traction = true
+wheel_radius = 0.35
+wheel_rest_length = 0.2
+suspension_stiffness = 40.0
+
+[node name="Wheel_Mesh" type="MeshInstance3D" parent="Wheel_FR"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_nk2qg")
+
+[node name="Wheel_RL" type="VehicleWheel3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.615376, -0.495612, -0.797587)
+use_as_steering = true
+wheel_radius = 0.25
+wheel_rest_length = 0.2
+suspension_stiffness = 40.0
+
+[node name="Wheel_Mesh" type="MeshInstance3D" parent="Wheel_RL"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_piga6")
+
+[node name="Wheel_RR" type="VehicleWheel3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.615, -0.496, -0.798)
+use_as_steering = true
+wheel_radius = 0.25
+wheel_rest_length = 0.2
+suspension_stiffness = 40.0
+
+[node name="Wheel_Mesh" type="MeshInstance3D" parent="Wheel_RR"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_piga6")
+
+[node name="Mast_Collision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0528, 0.994424)
+shape = SubResource("BoxShape3D_jkabv")
+
+[node name="Fork_Collision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0719365, 1.15301)
+shape = SubResource("BoxShape3D_0fip2")
+
+[node name="Fork_Left_Collision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.151484, -0.436579, 1.79225)
+shape = SubResource("BoxShape3D_re7ca")
+
+[node name="Fork_Right_Collision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.151, -0.436936, 1.79201)
+shape = SubResource("BoxShape3D_re7ca")
+
+[node name="Mast" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0528, 0.994424)
+mesh = SubResource("BoxMesh_wd1xw")
+
+[node name="Fork" type="MeshInstance3D" parent="Mast"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.12474, 0.158585)
+mesh = SubResource("BoxMesh_m5a6h")
+
+[node name="Remote_Fork" type="RemoteTransform3D" parent="Mast/Fork"]
+remote_path = NodePath("../../../Fork_Collision")
+
+[node name="Fork_Left" type="MeshInstance3D" parent="Mast/Fork"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.151484, -0.364643, 0.639237)
+mesh = SubResource("BoxMesh_wcaa7")
+
+[node name="Remote_Fork_Left" type="RemoteTransform3D" parent="Mast/Fork/Fork_Left"]
+remote_path = NodePath("../../../../Fork_Left_Collision")
+
+[node name="Fork_Right" type="MeshInstance3D" parent="Mast/Fork"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.151, -0.365, 0.639)
+mesh = SubResource("BoxMesh_wcaa7")
+
+[node name="Remote_Fork_Right" type="RemoteTransform3D" parent="Mast/Fork/Fork_Right"]
+remote_path = NodePath("../../../../Fork_Right_Collision")
